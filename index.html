@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b12">
+  <title>ChatWave — Real-Time Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow glow-one"></div>
+  <div class="bg-glow glow-two"></div>
+
+  <!-- Authentication -->
+  <main id="authScreen" class="auth-page">
+    <section class="auth-art">
+      <a class="brand" href="#">
+        <span class="brand-icon">✦</span>
+        ChatWave<span class="brand-dot">.</span>
+      </a>
+
+      <div class="art-content">
+        <span class="eyebrow"><span class="live-dot"></span> YOUR WORLD, CONNECTED</span>
+        <h1>Conversations<br>that feel <span>closer.</span></h1>
+        <p>A beautiful place to connect, share a laugh, and stay close to your people — wherever they are.</p>
+
+        <div class="preview-card">
+          <div class="preview-avatars">
+            <span>👩🏻</span><span>🧑🏽</span><span>👨🏻</span><span>👩🏽</span>
+          </div>
+          <div>
+            <strong>Your people, one place.</strong>
+            <p>Good conversations start here ✨</p>
+          </div>
+        </div>
+      </div>
+      <div class="art-footer">MADE FOR THE MOMENTS THAT MATTER ✦</div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-mobile-brand brand">
+        <span class="brand-icon">✦</span> ChatWave<span class="brand-dot">.</span>
+      </div>
+
+      <div class="auth-box">
+        <div class="auth-heading">
+          <span class="eyebrow">WELCOME TO CHATWAVE</span>
+          <h2 id="authTitle">Create your account</h2>
+          <p id="authSubtitle">Join the conversation. It starts with you.</p>
+        </div>
+
+        <div class="auth-tabs">
+          <button type="button" id="signupTab" class="auth-tab active">Create account</button>
+          <button type="button" id="loginTab" class="auth-tab">Log in</button>
+        </div>
+
+        <form id="authForm">
+          <div id="nameField" class="field">
+            <label for="displayName">Your name</label>
+            <input id="displayName" type="text" placeholder="e.g. Alex Morgan" maxlength="40" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="At least 6 characters" minlength="6" autocomplete="current-password" required>
+          </div>
+
+          <p id="authError" class="status-message" role="status" aria-live="polite"></p>
+          <button id="authSubmit" class="primary-btn" type="submit">
+            <span id="authSubmitText">Create account</span><span>↗</span>
+          </button>
+        </form>
+
+        <p class="auth-note"><span>🔒</span> Your account is protected by Firebase Authentication.</p>
+      </div>
+      <p class="auth-bottom">A little hello can make someone's day. 💜</p>
+    </section>
+  </main>
+
+  <!-- Chat application -->
+  <main id="chatScreen" class="chat-app hidden">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="#">
+          <span class="brand-icon">✦</span>
+          ChatWave<span class="brand-dot">.</span>
+        </a>
+        <button id="logoutBtn" class="icon-btn" title="Log out" aria-label="Log out">↪</button>
+      </div>
+
+      <div class="profile-mini">
+        <div id="myAvatar" class="avatar avatar-purple">U</div>
+        <div class="profile-info">
+          <strong id="myName">Your profile</strong>
+          <span><i class="live-dot"></i> Online</span>
+        </div>
+        <span class="profile-menu-dot">•••</span>
+      </div>
+
+      <div class="sidebar-label">
+        <span>YOUR CHATS</span>
+        <span class="tiny-badge">LIVE</span>
+      </div>
+
+      <button id="globalChatBtn" class="conversation active">
+        <div class="avatar global-avatar">✦</div>
+        <div class="conversation-info">
+          <strong>Global Lounge</strong>
+          <span>Everyone can join</span>
+        </div>
+        <span class="online-indicator"></span>
+      </button>
+
+      <div class="sidebar-hint">
+        <span class="hint-icon">✧</span>
+        <strong>Good vibes only</strong>
+        <p>Say hello, share a thought, and make someone's day.</p>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="connection-status">
+          <span class="live-dot"></span>
+          <span id="connectionText">Connecting to chat…</span>
+        </div>
+        <span class="version-text">CHATWAVE · COMMUNITY</span>
+      </div>
+    </aside>
+
+    <section class="chat-main">
+      <header class="chat-header">
+        <div class="chat-title-wrap">
+          <div class="avatar global-avatar header-avatar">✦</div>
+          <div>
+            <h2>Global Lounge <span class="verified">✓</span></h2>
+            <p><span class="live-dot"></span> Shared space · All members</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <span class="secure-label">✧ Real-time chat</span>
+          <button id="mobileLogoutBtn" class="icon-btn mobile-logout" title="Log out" aria-label="Log out">↪</button>
+        </div>
+      </header>
+
+      <div class="welcome-strip">
+        <span class="welcome-star">✦</span>
+        <div>
+          <strong>Welcome to the Lounge!</strong>
+          <p>You're chatting with the community. Be kind, be you. 💜</p>
+        </div>
+      </div>
+
+      <section id="messages" class="messages" aria-label="Chat messages" aria-live="polite">
+        <div id="loadingMessages" class="empty-state">
+          <div class="empty-icon">✦</div>
+          <h3>Getting things ready...</h3>
+          <p>Your conversations will appear here.</p>
+        </div>
+      </section>
+
+      <div id="emojiPicker" class="emoji-picker hidden" aria-label="Emoji picker">
+        <button type="button">😀</button><button type="button">😂</button>
+        <button type="button">🥹</button><button type="button">😍</button>
+        <button type="button">😊</button><button type="button">😎</button>
+        <button type="button">🤗</button><button type="button">😭</button>
+        <button type="button">❤️</button><button type="button">💜</button>
+        <button type="button">🔥</button><button type="button">✨</button>
+        <button type="button">🎉</button><button type="button">🙌</button>
+        <button type="button">👍</button><button type="button">🙏</button>
+        <button type="button">💯</button><button type="button">👋</button>
+        <button type="button">💖</button><button type="button">🌸</button>
+        <button type="button">🥳</button><button type="button">🤝</button>
+        <button type="button">☕</button><button type="button">🌙</button>
+      </div>
+
+      <footer class="composer-area">
+        <div id="sendError" class="send-error" role="status" aria-live="polite"></div>
+        <form id="messageForm" class="composer">
+          <button id="emojiBtn" class="composer-icon emoji-toggle" type="button" aria-label="Choose emoji" title="Choose emoji">☺</button>
+          <input id="messageInput" type="text" placeholder="Write something lovely..." maxlength="2000" autocomplete="off" aria-label="Message">
+          <span class="input-shortcut">↵</span>
+          <button id="sendBtn" class="send-btn" type="submit" aria-label="Send message" title="Send message">
+            <span>Send</span><span class="send-arrow">➤</span>
+          </button>
+        </form>
+        <p class="composer-caption">Made with <span>♥</span> and a little bit of magic <span>✦</span></p>
+      </footer>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="script.js?v=2"></script>
+</body>
+</html>
